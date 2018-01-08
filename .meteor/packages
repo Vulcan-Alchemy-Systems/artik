@@ -16,9 +16,11 @@ standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
-aldeed:collection2-core
-aldeed:autoform
+
+aldeed:collection2-core@2.0.1
+aldeed:autoform@6.0.0
 aldeed:template-extension
+dburles:collection-helpers
 sergeyt:typeahead
 accounts-base
 accounts-password

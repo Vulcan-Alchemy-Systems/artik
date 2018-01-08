@@ -1,0 +1,23 @@
+<template name="Home">
+  {{> ContentHeader title="Dashboard" subTitle="Version 1.0"}}
+
+  <section class="content">
+    <section id="alert"></section>
+
+    <div class="row">
+      {{#if isInRole 'employee'}}
+        {{> DashboardEmployee}}
+      {{/if}}
+
+      {{#if isInRole 'vendor'}}
+        {{> DashboardVendor}}
+      {{/if}}
+
+      {{#if isInRole 'customer'}}
+        {{> DashboardCustomer}}
+      {{/if}}
+    </div>
+
+
+  </section>
+</template>

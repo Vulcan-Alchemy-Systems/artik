@@ -1,0 +1,88 @@
+<template name="Sidebar">
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      {{#if userEnabled}}
+        {{#if currentUser}}
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="{{profileImage}}" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>{{fullName}}</p>
+            {{#if displayUserStatusEnabled}}
+              {{#if isClockedIn}}
+                <a href="#"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</a>
+              {{else}}
+                <a href="#"><i class="fa fa-circle text-danger" aria-hidden="true"></i> Offline</a>
+              {{/if}}
+            {{/if}}
+          </div>
+        </div>
+        {{/if}}
+      {{/if}}
+
+      {{#if searchEnabled}}
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      {{/if}}
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+          <a href="/">
+            <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/" title="Dashboard Home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+            {{#if isInRole 'employee'}}
+            <li><a href="/employees" title="View All Employees"><i class="fa fa-user" aria-hidden="true"></i> Employees</a></li>
+            <li><a href="/locations" title="View All Locations"><i class="fa fa-globe" aria-hidden="true"></i> Locations</a></li>
+            <li><a href="/customers" title="View All Customers"><i class="fa fa-users" aria-hidden="true"></i> Customers</a></li>
+            <li><a href="/vendors"   title="View All Customers"><i class="fa fa-building" aria-hidden="true"></i> Vendors</a></li>
+            {{/if}}
+          </ul>
+        </li>
+
+        {{#if currentUser}}
+        <li class="treeview">
+            <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>My Profile</span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/profile" title="My Profile"><i class="fa fa-circle-o" aria-hidden="true"></i> Home</a></li>
+              {{#if isInRole 'tasks'}}
+              <li><a href="/profile/tasks" title="My Tasks"><i class="fa fa-circle-o" aria-hidden="true"></i> Tasks</a></li>
+              {{/if}}
+              {{#if isInRole 'notices'}}
+              <li><a href="/profile/notices" title="My Notices"><i class="fa fa-circle-o" aria-hidden="true"></i> Notices</a></li>
+              {{/if}}
+              {{#if isInRole 'messages'}}
+              <li><a href="/profile/messages" title="My Messages"><i class="fa fa-circle-o" aria-hidden="true"></i> Messages</a></li>
+              {{/if}}
+            </ul>
+        </li>
+        {{/if}}
+
+        {{#if isInRole 'admin'}}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa {{adminMenuItem.icon}}" aria-hidden="true"></i> <span>{{adminMenuItem.name}}</span>
+          </a>
+          <ul class="treeview-menu">
+            {{#each adminMenuItem.subMenu}}
+            <li><a href="{{url}}" title="{{name}}"><i class="fa {{icon}}" aria-hidden="true"></i> {{name}}</a></li>
+            {{/each}}
+          </ul>
+        </li>
+        {{/if}}
+      </ul>
+    </section>
+  </aside>
+</template>
